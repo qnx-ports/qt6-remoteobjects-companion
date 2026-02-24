@@ -1,0 +1,50 @@
+diff --git a/src/remoteobjects/CMakeLists.txt b/src/remoteobjects/CMakeLists.txt
+index 3998480..14c5178 100644
+--- a/src/remoteobjects/CMakeLists.txt
++++ b/src/remoteobjects/CMakeLists.txt
+@@ -57,14 +57,6 @@ qt_process_qlalr(
+ ## Scopes:
+ #####################################################################
+ 
+-qt_internal_extend_target(RemoteObjects CONDITION QNX
+-    SOURCES
+-        qconnection_qnx_backend.cpp qconnection_qnx_backend_p.h
+-        qconnection_qnx_global_p.h
+-        qconnection_qnx_qiodevices.cpp qconnection_qnx_qiodevices.h qconnection_qnx_qiodevices_p.h
+-        qconnection_qnx_server.cpp qconnection_qnx_server.h qconnection_qnx_server_p.h
+-)
+-
+ qt_internal_extend_target(RemoteObjects CONDITION QNX AND QT_FEATURE_use_ham
+     PUBLIC_LIBRARIES
+         ham
+diff --git a/src/remoteobjects/qconnectionfactories.cpp b/src/remoteobjects/qconnectionfactories.cpp
+index 5079851..b42287d 100644
+--- a/src/remoteobjects/qconnectionfactories.cpp
++++ b/src/remoteobjects/qconnectionfactories.cpp
+@@ -6,7 +6,7 @@
+ #include "qremoteobjectpacket_p.h"
+ 
+ // BEGIN: Backends
+-#if defined(Q_OS_QNX)
++#if 0
+ #include "qconnection_qnx_backend_p.h"
+ #endif
+ #include "qconnection_local_backend_p.h"
+@@ -261,7 +261,7 @@ QString QtROExternalIoDevice::deviceType() const
+ */
+ QtROServerFactory::QtROServerFactory()
+ {
+-#ifdef Q_OS_QNX
++#if 0
+     registerType<QnxServerImpl>(QStringLiteral("qnx"));
+ #endif
+ #ifdef Q_OS_LINUX
+@@ -283,7 +283,7 @@ QtROServerFactory *QtROServerFactory::instance()
+ */
+ QtROClientFactory::QtROClientFactory()
+ {
+-#ifdef Q_OS_QNX
++#if 0
+     registerType<QnxClientIo>(QStringLiteral("qnx"));
+ #endif
+ #ifdef Q_OS_LINUX
