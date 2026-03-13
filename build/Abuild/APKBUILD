@@ -2,7 +2,7 @@
 # Maintainer: Felix Xing <fxing@qnx.com>
 pkgname=qt6-remoteobjects
 pkgver=6.10.0
-pkgrel=0
+pkgrel=${pkgrel:-0}
 pkgdesc="Inter-process communication (IPC) module developed for Qt"
 url="https://qt.io/"
 arch="all"
@@ -77,6 +77,7 @@ dev() {
     amove usr/lib/qt6/sbom
 }
 
+options="$options ${DISABLE_CHECK:+!check}"
 sha512sums="
 9ba660583f13693da2e13fda1b1b8612845d6084c1ee7ac56ec244b8263b659f8b1d892ed227d46737eacfc645ae9553d2f59426e55f2d323382bbd9319dab59  qtremoteobjects-everywhere-src-6.10.0.tar.xz
 086c7b64d6f8683b98069d9c790f8b294a3581870394b0ca53b902155c188716ff422b0f6fb5a56923107c016ff231806dc28b02a8bde35c8e69616637ded2c9  001-remove-qnx-server-dead-code.patch
